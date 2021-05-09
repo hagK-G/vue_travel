@@ -2,8 +2,8 @@
   <div>
     <div class="title">热销推荐</div>
     <ul>
-      <li class="item border-bottom" v-for="item in recommendList" :key="item.id">
-        <img class="item-img" :src="item.url" />
+      <li class="item border-bottom" v-for="item in list" :key="item.id">
+        <img class="item-img" :src="item.imgUrl" />
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
           <p class="item-desc">{{item.desc}}</p>
@@ -17,39 +17,11 @@
 <script>
   export default {
     name: 'recommend',
+    props: {
+      list: Array
+    },
     data() {
       return {
-        recommendList: [{
-            'id': '001',
-            'url': 'http://img1.qunarzz.com/sight/p0/1804/c8/c88bb5e69c9a9c5ea3.img.jpg_200x200_740720ff.jpg',
-            'title': '古北水镇',
-            'desc': '复古乳房很快就恢复会计师费好'
-          },
-          {
-            'id': '002',
-            'url': 'http://img1.qunarzz.com/sight/p0/1804/c8/c88bb5e69c9a9c5ea3.img.jpg_200x200_740720ff.jpg',
-            'title': '古北水镇',
-            'desc': '复古乳房很快就恢复会计师费好'
-          },
-          {
-            'id': '003',
-            'url': 'http://img1.qunarzz.com/sight/p0/1804/c8/c88bb5e69c9a9c5ea3.img.jpg_200x200_740720ff.jpg',
-            'title': '古北水镇',
-            'desc': '复古乳房很快就恢复会计师费好'
-          },
-          {
-            'id': '004',
-            'url': 'http://img1.qunarzz.com/sight/p0/1804/c8/c88bb5e69c9a9c5ea3.img.jpg_200x200_740720ff.jpg',
-            'title': '古北水镇',
-            'desc': '复古乳房很快就恢复会计师费好'
-          },
-          {
-            'id': '005',
-            'url': 'http://img1.qunarzz.com/sight/p0/1804/c8/c88bb5e69c9a9c5ea3.img.jpg_200x200_740720ff.jpg',
-            'title': '古北水镇',
-            'desc': '复古乳房很快就恢复会计师费好'
-          },
-        ]
       }
     }
   }
