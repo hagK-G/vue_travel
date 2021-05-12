@@ -8,7 +8,7 @@
     </div>
     <router-link to="/city">
       <div class="header-right">
-        城市
+        {{city}}
         <span class="iconfont arrow-icon">&#xe64a;</span>
       </div>
     </router-link>
@@ -18,7 +18,12 @@
 
 <script>
   export default {
-    name: 'HomeHeader'
+    name: 'HomeHeader',
+    computed: {
+      city () {
+        return this.$store.state.city
+      }
+    }
   }
 </script>
 
