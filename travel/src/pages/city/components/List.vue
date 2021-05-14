@@ -31,9 +31,13 @@
 
 <script>
   import Bscroll from 'better-scroll'
+  import {
+    mapState,
+    mapActions
+  } from 'vuex'
   export default {
     name: 'CityList',
-    props:{
+    props: {
       cities: Object,
       hotCities: Array,
       letter: String
@@ -42,23 +46,22 @@
       this.scroll = new Bscroll(this.$refs.wrapper)
     },
     watch: {
-      letter () {
-        if(this.letter){
+      letter() {
+        if (this.letter) {
           const elem = this.$refs[this.letter][0]
           this.scroll.scrollToElement(elem)
         }
       }
     },
     computed: {
-      city () {
-        return this.$store.state.city
-      }
+      ...mapState(['city'])
     },
-    methods:{
-      handleCityClick (city) {
-        this.$store.dispatch('changeCity', city)
+    methods: {
+      handleCityClick(city) {
+        this.changeCity(city)
         this.$router.push('/')
-      }
+      },
+      ...mapActions(['changeCity'])
     }
   }
 </script>

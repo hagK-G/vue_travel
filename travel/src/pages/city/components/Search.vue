@@ -6,7 +6,7 @@
     <div class="search-content" ref="search" v-show="keyword">
       <ul>
         <li class="search-item border-bottom" v-for="item in list" :key="item.id" @click="handleCityClick(item.name)">
-            {{item.name}}
+          {{item.name}}
         </li>
         <li class="search-item border-bottom" v-show="hasNoData">
           没有找到匹配数据
@@ -17,44 +17,48 @@
 </template>
 
 <script>
-import Bsroll from 'better-scroll'
+  import Bsroll from 'better-scroll'
+  import {
+    mapActions
+  } from 'vuex'
   export default {
     name: 'CitySearch',
-    props:{
+    props: {
       cities: Object
     },
-    data () {
+    data() {
       return {
         keyword: '',
         timer: null,
         list: [],
       }
     },
-    methods:{
-      handleCityClick (city) {
-        this.$store.dispatch('changeCity', city)
+    methods: {
+      handleCityClick(city) {
+        this.changeCity(city)
         this.$router.push('/')
-      }
+      },
+      ...mapActions(['changeCity'])
     },
-    computed : {
-      hasNoData () {
+    computed: {
+      hasNoData() {
         return !this.keyword
       }
     },
-    watch:{
-      keyword () {
+    watch: {
+      keyword() {
         const searchList = [];
-        if(!this.keyword){
+        if (!this.keyword) {
           this.list = []
           return
         }
-        if(this.timer){
+        if (this.timer) {
           clearTimeout(this.timer)
         }
         this.timer = setTimeout(() => {
-          for(let i in this.cities){
+          for (let i in this.cities) {
             this.cities[i].forEach(((value) => {
-              if(value.spell.indexOf(this.keyword) > -1 || value.name.indexOf(this.keyword) > -1){
+              if (value.spell.indexOf(this.keyword) > -1 || value.name.indexOf(this.keyword) > -1) {
                 searchList.push(value)
               }
             }))
@@ -63,7 +67,7 @@ import Bsroll from 'better-scroll'
         }, 100);
       }
     },
-    mounted () {
+    mounted() {
       this.scroll = new Bsroll(this.$refs.search)
     }
   }
