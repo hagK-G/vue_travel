@@ -5,12 +5,15 @@
       :bannerImg="bannerImg"
       :gallaryImgs="gallaryImgs"
       ></detail-banner>
+    <detail-header></detail-header>
+    <div style="height:2000px"></div>
   </div>
 </template>
 
 <script>
   import axios from 'axios'
   import DetailBanner from './components/Banner'
+  import DetailHeader from './components/Header'
   export default {
     name: 'Detail',
     data() {
@@ -21,7 +24,8 @@
       }
     },
     components: {
-      DetailBanner
+      DetailBanner,
+      DetailHeader
     },
     methods: {
       getDetailInfo() {
