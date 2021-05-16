@@ -4,42 +4,45 @@
       <img class="banner-img" :src="bannerImg" />
       <div class="banner-info">
         <div class="banner-tittle">
-          name
+          {{this.sightName}}
         </div>
         <div class="banner-number">
-          <span class="iconfont banner-icon">&#xe692;</span> 2
+          <span class="iconfont banner-icon">&#xe692;</span> {{this.gallaryImgs.length}}
         </div>
       </div>
     </div>
-    <common-gallery 
-      v-show="showGallery"
-      @close="handleGallaryClose"
-      ></common-gallery>
+    <fade-animation>
+      <common-gallery :imgs="gallaryImgs" v-show="showGallery" @close="handleGallaryClose"></common-gallery>
+    </fade-animation>
+    
+  
   </div>
 </template>
 
 <script>
   import CommonGallery from 'common/gallery/Gallery'
+  import FadeAnimation from 'common/fade/FadeAnimation'
   export default {
     name: 'Banner',
     props: {
       sightName: String,
       bannerImg: String,
-      bannerImgs: Array
+      gallaryImgs: Array
     },
-    data () {
+    data() {
       return {
         showGallery: false
       }
     },
-    components:{
-      CommonGallery
+    components: {
+      CommonGallery,
+      FadeAnimation
     },
     methods: {
       handleBannerClick() {
         this.showGallery = true
       },
-      handleGallaryClose () {
+      handleGallaryClose() {
         this.showGallery = false
       }
     }

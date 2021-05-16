@@ -3,11 +3,10 @@
     <div class="container" @click="handleGallaryClick">
       <div class="wrapper">
         <swiper :options="swiperOptions">
-          <swiper-slide>
-            <img class="gallary-img" src="http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_800x800_70debc93.jpg" />
-          </swiper-slide>
-          <swiper-slide>
-            <img class="gallary-img" src="http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_800x800_70debc93.jpg" />
+          <swiper-slide 
+          v-for="(item, index) in imgs"
+          :key="index">
+            <img class="gallary-img" :src="item" />
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
@@ -19,6 +18,9 @@
 <script>
   export default {
     name: 'CommonGallary',
+    props:{
+      imgs: Array
+    },
     data() {
       return {
         swiperOptions: {
@@ -44,7 +46,7 @@
     display: flex
     flex-direction: column
     justify-content: center
-    z-index: 99
+    z-index: 999
     position: fixed
     left: 0
     right: 0
